@@ -45,7 +45,8 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Container(
                   margin: EdgeInsets.all(50),
                   decoration: BoxDecoration(
-                      color: backgroundColor, borderRadius: BorderRadius.circular(8)),
+                      color: backgroundColor,
+                      borderRadius: BorderRadius.circular(8)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -99,7 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      const ReusableTextIconButton(
+                      ReusableTextIconButton(
                         text: "Login",
                       ),
                       const ReusableAlreadyText(

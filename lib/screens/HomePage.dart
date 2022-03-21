@@ -107,15 +107,7 @@ class _HomePageState extends State<HomePage> {
                   }))
         ],
       ),
-    )
-        // Container(
-        //   margin: const EdgeInsets.symmetric(horizontal: 35),
-        //   height: height * 0.8,
-        //   decoration: BoxDecoration(
-        //       color: whiteColor, borderRadius: BorderRadius.circular(8)),
-        // )
-
-        );
+    ));
   }
 }
 

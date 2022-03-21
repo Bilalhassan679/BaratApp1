@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReusableTextIconButton extends StatelessWidget {
   final String text;
   final double margin;
+  // final Function onClick;
 
   const ReusableTextIconButton({Key? key, required this.text, this.margin = 45})
       : super(key: key);

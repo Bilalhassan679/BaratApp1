@@ -1,9 +1,11 @@
+import 'package:barat/screens/HomePage.dart';
+import 'package:barat/screens/admin.dart';
 import 'package:barat/utils/color.dart';
 import 'package:barat/widgets/reusableTextField.dart';
 import 'package:barat/widgets/reusableTextIconButton.dart';
 import 'package:barat/widgets/reusablealreadytext.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,11 +16,16 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+  final String email = "admin@gmail.com";
+  final int password = 12345;
+
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     _email.dispose();
+    _password.dispose();
   }
 
   @override
@@ -53,14 +60,14 @@ class _LoginPageState extends State<LoginPage> {
 
                       ReusableTextField(
                         controller: _email,
-                        hintText: 'username',
+                        hintText: 'email',
                         keyboardType: TextInputType.text,
                       ),
                       SizedBox(
                         height: height * 0.01,
                       ),
                       ReusableTextField(
-                        controller: _email,
+                        controller: _password,
                         hintText: 'password',
                         keyboardType: TextInputType.visiblePassword,
                         obscure: true,
@@ -68,8 +75,18 @@ class _LoginPageState extends State<LoginPage> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      const ReusableTextIconButton(
-                        text: "Login",
+                      InkWell(
+                        onTap: () {
+                          if (_email == email.toString() &&
+                              _password == password.toString()) {
+                            Get.off(() => const HomePage());
+                          } else {
+                            Get.off(() => const AdminPage());
+                          }
+                        },
+                        child: ReusableTextIconButton(
+                          text: "Login",
+                        ),
                       ),
                       const ReusableAlreadyText(
                         text: 'Signup',
