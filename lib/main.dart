@@ -1,8 +1,8 @@
-import 'package:barat/screens/areaForm.dart';
+import 'package:barat/screens/signUpPage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Barat',
         theme: ThemeData(primarySwatch: Colors.blue),
-        home: const AdminAreaForm(),
+        home: const SignUpPage(),
         // initialRoute: '/',
         // routes: {
         //   '/': (context) => const SplashScreen(),

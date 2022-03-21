@@ -82,28 +82,12 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
                                         },
                                         child: Text('Select Files')),
                                   ),
-                                  // Center(
-                                  //   child: ElevatedButton.icon(
-                                  //       onPressed: () {
-                                  //         if (_selectedFiles.isNotEmpty) {
-                                  //           uploadFunction(_selectedFiles);
-                                  //         } else {
-                                  //           ScaffoldMessenger.of(context)
-                                  //               .showSnackBar(SnackBar(
-                                  //                   content: Text(
-                                  //                       "PLEASE Select Image")));
-                                  //         }
-                                  //       },
-                                  //       icon: Icon(Icons.upload_sharp),
-                                  //       label: Text('Upload')),
-                                  // ),
                                   Center(
                                     child: _selectedFiles.length == null
                                         ? Text("No Images Selected")
                                         : Text(
                                             'Image is Selected : ${_selectedFiles.length.toString()}'),
                                   ),
-
                                   Expanded(
                                     child: GridView.builder(
                                         itemCount: _selectedFiles.length,
@@ -131,7 +115,7 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
                         onTap: () async {
                           if (_selectedFiles.isNotEmpty) {
                             uploadFunction(_selectedFiles);
-                            Get.to(AdminPage());
+                            Get.to(() => const AdminPage());
                           } else if (areaName.toString().isNotEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text("PLEASE Type Area Name")));

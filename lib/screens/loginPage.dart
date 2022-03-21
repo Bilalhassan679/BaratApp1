@@ -1,5 +1,7 @@
 import 'package:barat/screens/HomePage.dart';
 import 'package:barat/screens/admin.dart';
+import 'package:barat/screens/signUpPage.dart';
+import 'package:barat/services/credentialservices.dart';
 import 'package:barat/utils/color.dart';
 import 'package:barat/widgets/reusableTextField.dart';
 import 'package:barat/widgets/reusableTextIconButton.dart';
@@ -15,6 +17,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final CredentialServices credentialServices = CredentialServices();
+
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final String email = "admin@gmail.com";
@@ -84,12 +88,19 @@ class _LoginPageState extends State<LoginPage> {
                             Get.off(() => const AdminPage());
                           }
                         },
-                        child: ReusableTextIconButton(
-                          text: "Login",
+                        child: InkWell(
+                          onTap: () {
+                            credentialServices.loginPost(_email.text.toString(),
+                                _password.text.toString());
+                          },
+                          child: ReusableTextIconButton(
+                            text: "Login",
+                          ),
                         ),
                       ),
-                      const ReusableAlreadyText(
+                      ReusableAlreadyText(
                         text: 'Signup',
+                        onClick: () => Get.off(() => const SignUpPage()),
                       ),
                     ],
                   )),

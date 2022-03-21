@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class ReusableAlreadyText extends StatelessWidget {
   final String text;
-  const ReusableAlreadyText({Key? key, required this.text}) : super(key: key);
-
+  const ReusableAlreadyText(
+      {Key? key, required this.text, required this.onClick})
+      : super(key: key);
+  final Function onClick;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,14 +16,16 @@ class ReusableAlreadyText extends StatelessWidget {
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         TextButton(
-            onPressed: () {},
+            onPressed: () {
+              onClick();
+            },
             child: Text(
               text,
               style: const TextStyle(
                   fontSize: 16,
                   color: Colors.black87,
                   fontWeight: FontWeight.bold),
-            ))
+            )),
       ],
     );
   }

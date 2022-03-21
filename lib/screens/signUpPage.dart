@@ -1,9 +1,12 @@
+import 'package:barat/screens/loginPage.dart';
+import 'package:barat/services/credentialservices.dart';
 import 'package:barat/utils/color.dart';
 import 'package:barat/widgets/reusableBigText.dart';
 import 'package:barat/widgets/reusableTextField.dart';
 import 'package:barat/widgets/reusableTextIconButton.dart';
 import 'package:barat/widgets/reusablealreadytext.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -13,11 +16,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final CredentialServices credentialServices = CredentialServices();
   final TextEditingController _username = TextEditingController();
   final TextEditingController _fullname = TextEditingController();
   final TextEditingController _phone = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -45,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: Container(
                   margin: EdgeInsets.all(50),
                   decoration: BoxDecoration(
-                      color: backgroundColor,
+                      color: whiteColor,
                       borderRadius: BorderRadius.circular(8)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,11 +105,18 @@ class _SignUpPageState extends State<SignUpPage> {
                       SizedBox(
                         height: height * 0.02,
                       ),
-                      ReusableTextIconButton(
-                        text: "Login",
+                      InkWell(
+                        onTap: () async {
+                          credentialServices.signUpPost(_email.text.toString(),
+                              _password.text.toString());
+                        },
+                        child: const ReusableTextIconButton(
+                          text: "SignUp",
+                        ),
                       ),
-                      const ReusableAlreadyText(
-                        text: "SignUp",
+                      ReusableAlreadyText(
+                        text: "Login",
+                        onClick: () => Get.off(() => const LoginPage()),
                       ),
                     ],
                   )),
