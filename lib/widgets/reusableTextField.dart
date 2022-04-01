@@ -1,5 +1,6 @@
 import 'package:barat/utils/color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReusableTextField extends StatelessWidget {
   final TextEditingController controller;
@@ -18,7 +19,7 @@ class ReusableTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 3.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: TextField(
         controller: controller,
         obscureText: obscure,
@@ -32,8 +33,7 @@ class ReusableTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(5),
             borderSide: const BorderSide(color: borderColor),
           ),
-          contentPadding:
-              const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+          contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
           hintText: hintText,
           fillColor: primaryColor,
           hintStyle: const TextStyle(

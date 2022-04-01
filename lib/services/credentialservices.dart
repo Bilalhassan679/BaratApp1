@@ -1,3 +1,5 @@
+import 'package:barat/screens/HomePage.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class CredentialServices {
@@ -8,6 +10,7 @@ class CredentialServices {
           body: {'email': email, 'password': password});
       if (response.statusCode == 200) {
         print(response.body.toString());
+        Get.off(() => const HomePage());
         print('account created Succesfully');
       } else {
         print("Account is not Created");
@@ -23,6 +26,7 @@ class CredentialServices {
           body: {'email': email, 'password': password});
       if (response.statusCode == 200) {
         print(response.body.toString());
+        Get.off(() => const HomePage());
         print('account created Succesfully');
       } else {
         print("Account is not Created");

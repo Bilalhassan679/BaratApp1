@@ -1,5 +1,3 @@
-import 'package:barat/screens/HomePage.dart';
-import 'package:barat/screens/admin.dart';
 import 'package:barat/screens/signUpPage.dart';
 import 'package:barat/services/credentialservices.dart';
 import 'package:barat/utils/color.dart';
@@ -8,6 +6,8 @@ import 'package:barat/widgets/reusableTextIconButton.dart';
 import 'package:barat/widgets/reusablealreadytext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'admin.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -81,21 +81,17 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          if (_email == email.toString() &&
-                              _password == password.toString()) {
-                            Get.off(() => const HomePage());
-                          } else {
+                          if (_email.text.toString() == email.toString() &&
+                              _password.text.toString() ==
+                                  password.toString()) {
                             Get.off(() => const AdminPage());
-                          }
-                        },
-                        child: InkWell(
-                          onTap: () {
+                          } else {
                             credentialServices.loginPost(_email.text.toString(),
                                 _password.text.toString());
-                          },
-                          child: ReusableTextIconButton(
-                            text: "Login",
-                          ),
+                          }
+                        },
+                        child: const ReusableTextIconButton(
+                          text: "Login",
                         ),
                       ),
                       ReusableAlreadyText(

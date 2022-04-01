@@ -37,7 +37,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
+    // final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
         child: Center(
@@ -48,7 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
               constraints:
                   BoxConstraints(maxHeight: MediaQuery.of(context).size.height),
               child: Container(
-                  margin: EdgeInsets.all(50),
+                  margin: const EdgeInsets.all(50),
                   decoration: BoxDecoration(
                       color: whiteColor,
                       borderRadius: BorderRadius.circular(8)),

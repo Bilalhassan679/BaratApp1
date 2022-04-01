@@ -1,27 +1,36 @@
-import 'package:barat/Models/location_model.dart';
-import 'package:barat/screens/halls_screen.dart';
 import 'package:barat/services/locationservices.dart';
-import 'package:barat/utils/color.dart';
-import 'package:barat/widgets/reusableBigText.dart';
-import 'package:barat/widgets/reusableText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import '../Models/get_halls_by_i_d.dart';
+import '../utils/color.dart';
+import '../widgets/reusableBigText.dart';
+import '../widgets/reusableText.dart';
+import 'hall_details_screen.dart';
+
+class HallsScreen extends StatefulWidget {
+  const HallsScreen({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HallsScreenState createState() => _HallsScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HallsScreenState extends State<HallsScreen> {
+  String? hallName;
   LocationServices locationServices = LocationServices();
+
+  var data = Get.arguments[0]['id'];
+  String? areaName = Get.arguments[1]['AreaName'];
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    print('20 ${areaName.toString()}');
+    print('21 ${data.toString()}');
     LocationServices();
+    // locationServices.getHallApiById(data);
   }
 
   @override
@@ -37,32 +46,31 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const ReusableBigText(
-            text: "Welcome to Baraat App",
+          ReusableBigText(
+            text: areaName.toString(),
             fontSize: 25,
           ),
           const ReusableText(
-            text: "Book your Hall or Lawn",
+            text: "Select Your Lawn Or Hall",
             fontSize: 20,
           ),
           SizedBox(
-            height: height * 0.04,
+            height: height * 0.01,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              ReusableBigText(
-                text: "Select Area",
-                fontSize: 25,
-              ),
-              Icon(Icons.logout),
-            ],
-          ),
+          // Row(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   children: const [
+          //     ReusableBigText(
+          //       text: "Select Area",
+          //       fontSize: 25,
+          //     ),
+          //     Icon(Icons.logout),
+          //   ],
+          // ),
           Expanded(
               child: FutureBuilder(
-                  future: locationServices.fetchLocationArea(),
-                  builder: (context, AsyncSnapshot<LocationModel?> snapshot) {
-                    // print(snapshot.data!.data!['sdasd']);
+                  future: locationServices.getHallApiById(data),
+                  builder: (context, AsyncSnapshot<GetHallsByID?> snapshot) {
                     if (!snapshot.hasData) {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height,
@@ -79,18 +87,19 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSpacing: 10.0.w,
                                   childAspectRatio: 0.7),
                           itemBuilder: (context, index) {
-                            print("81 ${snapshot.data!.data![index].areaName}");
+                            // hallName = snapshot.data!.data[index].;
+                            var imageVar = snapshot.data!.data![index].images;
+
                             return InkWell(
-                              onTap: () async {
-                                // await locationServices.getHallApiById(
-                                //     "${snapshot.data!.data![index].id}");
-                                Get.to(() => HallsScreen(), arguments: [
-                                  {"id": snapshot.data!.data![index].id},
-                                  {
-                                    "AreaName":
-                                        snapshot.data!.data![index].areaName
-                                  },
-                                ]);
+                              onTap: () {
+                                Get.to(() => const HallDetailScreen(),
+                                    arguments: [
+                                      {
+                                        "ListImage":
+                                            snapshot.data!.data![index].images
+                                      },
+                                      {},
+                                    ]);
                               },
                               child: Container(
                                 padding: EdgeInsets.only(bottom: 15.h),
@@ -100,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                                     color: Colors.red,
                                     image: DecorationImage(
                                         image: NetworkImage(
-                                            "${snapshot.data!.data![index].areaImage}"),
+                                            "${snapshot.data!.data![index].images![0]}"),
                                         fit: BoxFit.cover)),
                                 child: Align(
                                   alignment: Alignment.bottomCenter,
@@ -108,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                                     color: whiteColor,
                                     child: ReusableBigText(
                                       text:
-                                          "${snapshot.data!.data![index].areaName}",
+                                          "${snapshot.data!.data![index].hallName}",
                                       fontSize: 21,
                                     ),
                                   ),

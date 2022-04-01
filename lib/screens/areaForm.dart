@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../services/locationservices.dart';
 import '../utils/color.dart';
 import '../widgets/reusableTextField.dart';
 import '../widgets/reusableTextIconButton.dart';
@@ -19,12 +20,14 @@ class AdminAreaForm extends StatefulWidget {
 }
 
 class _AdminAreaFormState extends State<AdminAreaForm> {
+  LocationServices locationServices = LocationServices();
   final ImagePicker _imagePicker = ImagePicker();
   List<XFile> _selectedFiles = [];
   FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
   List<String> arrimgsUrl = [];
   int uploadItem = 0;
   bool _upLoading = false;
+  var img_url;
 
   final TextEditingController areaName = TextEditingController();
   @override
@@ -114,7 +117,9 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
                       InkWell(
                         onTap: () async {
                           if (_selectedFiles.isNotEmpty) {
-                            uploadFunction(_selectedFiles);
+                            await uploadFile(_selectedFiles.first);
+                            locationServices.postLocationByAdmin(
+                                img_url, areaName.text.toString());
                             Get.to(() => const AdminPage());
                           } else if (areaName.toString().isNotEmpty) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -187,10 +192,11 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
     });
     // await reference.getDownloadURL();
     // print("111 ${await reference.getDownloadURL()}");
-    var img_url = await reference.getDownloadURL();
+    img_url = await reference.getDownloadURL();
+
     print('function print ${img_url}');
     return img_url;
-    // return await reference.getDownloadURL();
+    // return await reference.getDownloadURL();/
   }
   //Finish Upload Images in Firestore Storage
 
@@ -213,4 +219,5 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
     setState(() {});
   }
 //Finish Select Image From Gallery
+
 }
