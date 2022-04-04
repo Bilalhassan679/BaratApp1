@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                                   mainAxisSpacing: 10.0.w,
                                   childAspectRatio: 0.7),
                           itemBuilder: (context, index) {
-                            print("81 ${snapshot.data!.data![index].areaName}");
+                            print("81 ${snapshot.data!.data![index].id}");
                             return InkWell(
                               onTap: () async {
                                 // await locationServices.getHallApiById(

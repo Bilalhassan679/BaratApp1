@@ -207,8 +207,8 @@ class _AdminAreaFormState extends State<AdminAreaForm> {
     }
 
     try {
-      final List<XFile>? imgs = await _imagePicker.pickMultiImage(
-          imageQuality: 50, maxWidth: 400, maxHeight: 400);
+      final List<XFile>? imgs =
+          await _imagePicker.pickMultiImage(maxWidth: 400, maxHeight: 400);
       if (imgs!.isNotEmpty) {
         _selectedFiles.addAll(imgs);
       }
