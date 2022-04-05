@@ -9,12 +9,15 @@ class ReusableDetailsCopyText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.95,
+      // height: 800,
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           SizedBox(
+            height: 40.h,
             width: 100.w,
             child: Text(
               text1,
@@ -22,12 +25,12 @@ class ReusableDetailsCopyText extends StatelessWidget {
             ),
           ),
           Container(
-            width: 60,
-            height: 35,
+            width: 200.w,
+            height: 40.h,
             child: SelectableText(
               text2,
               textAlign: TextAlign.end,
-              minLines: 3,
+              minLines: 2,
               style: TextStyle(
                 overflow: TextOverflow.ellipsis,
                 fontWeight: FontWeight.bold,

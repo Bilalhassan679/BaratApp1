@@ -1,10 +1,12 @@
+import 'package:barat/screens/booking_form.dart';
+import 'package:barat/widgets/reusable_detail_copy_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../widgets/reusable_detail_copy_text.dart';
+import '../utils/color.dart';
 
 class HallDetailScreen extends StatefulWidget {
   const HallDetailScreen({Key? key}) : super(key: key);
@@ -83,44 +85,74 @@ class _HallDetailScreenState extends State<HallDetailScreen> {
         ),
       ),
       SizedBox(height: 10.h),
-      const Text(
-        "DETAILS",
-        style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-      ),
-      ReusableDetailsCopyText(
-        text1: "Owner/Manger",
-        text2: "name",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Contact",
-        text2: "name",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Email",
-        text2: "name",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Email",
-        text2: "name",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Address",
-        text2: "name",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Capacity of hall",
-        text2: "a6565sa4df65as4df654sasdasd",
-      ),
-      ReusableDetailsCopyText(
-        text1: "Catering Service per head",
-        text2: "name",
-      ),
       Expanded(
-        child: ReusableDetailsCopyText(
-          text1: "Event planner services",
-          text2: "name",
-        ),
-      ),
+          child: SingleChildScrollView(
+              child: Container(
+                  height: 550.h,
+                  child: Column(children: <Widget>[
+                    const Text(
+                      "DETAILS",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Owner/Manger",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Contact",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Email",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Email",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Address",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Capacity of hall",
+                      text2: "S-34 8th Staff line DHA Defence Phase 1",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Catering Service per head",
+                      text2: "name",
+                    ),
+                    ReusableDetailsCopyText(
+                      text1: "Event planner services",
+                      text2: "name",
+                    ),
+                    SizedBox(
+                      height: 50.h,
+                      width: 110.w,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Get.to(() => const BookingForm());
+                        },
+                        child: Text(
+                          "Book Now",
+                          style: TextStyle(
+                            fontSize: 17.sp,
+                            color: whiteColor,
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.blueGrey,
+                          primary: secondaryColor,
+                          elevation: 9,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            // <-- Radius
+                          ),
+                        ),
+                      ),
+                    )
+                  ]))))
     ])));
   }
 }
