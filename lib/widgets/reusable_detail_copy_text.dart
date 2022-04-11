@@ -18,7 +18,7 @@ class ReusableDetailsCopyText extends StatelessWidget {
         children: [
           SizedBox(
             height: 40.h,
-            width: 100.w,
+            width: 120.w,
             child: Text(
               text1,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.sp),

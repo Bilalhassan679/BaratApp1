@@ -5,4 +5,5 @@ class AppUrl {
   static const String countryListApi = baseUrl + 'countries';
   static const String createArea = baseUrl + 'area/createArea';
   static const String getHallsById = baseUrl + 'getHalls/';
+  static const String postbookHallsByUser = baseUrl + 'hallOrder/bookHalls/';
 }

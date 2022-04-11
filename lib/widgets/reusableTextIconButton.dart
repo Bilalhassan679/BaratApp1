@@ -5,9 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class ReusableTextIconButton extends StatelessWidget {
   final String text;
   final double margin;
+  final Color color;
   // final Function onClick;
 
-  const ReusableTextIconButton({Key? key, required this.text, this.margin = 45})
+  const ReusableTextIconButton(
+      {Key? key,
+      required this.text,
+      this.color = secondaryColor,
+      this.margin = 45})
       : super(key: key);
 
   @override
@@ -19,8 +24,7 @@ class ReusableTextIconButton extends StatelessWidget {
       height: height / 14,
       margin: EdgeInsets.symmetric(horizontal: margin.w),
       decoration: BoxDecoration(
-          color: secondaryColor,
-          borderRadius: BorderRadiusDirectional.circular(15)),
+          color: color, borderRadius: BorderRadiusDirectional.circular(15)),
       child: Padding(
         padding: const EdgeInsets.all(14.0),
         child: Row(

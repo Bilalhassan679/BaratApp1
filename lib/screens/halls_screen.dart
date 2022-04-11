@@ -57,16 +57,6 @@ class _HallsScreenState extends State<HallsScreen> {
           SizedBox(
             height: height * 0.01,
           ),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: const [
-          //     ReusableBigText(
-          //       text: "Select Area",
-          //       fontSize: 25,
-          //     ),
-          //     Icon(Icons.logout),
-          //   ],
-          // ),
           Expanded(
               child: FutureBuilder(
                   future: locationServices.getHallApiById(data),
@@ -88,8 +78,6 @@ class _HallsScreenState extends State<HallsScreen> {
                                   childAspectRatio: 0.7),
                           itemBuilder: (context, index) {
                             // hallName = snapshot.data!.data[index].;
-                            var imageVar = snapshot.data!.data![index].images;
-
                             return InkWell(
                               onTap: () {
                                 Get.to(() => const HallDetailScreen(),
@@ -98,7 +86,35 @@ class _HallsScreenState extends State<HallsScreen> {
                                         "ListImage":
                                             snapshot.data!.data![index].images
                                       },
-                                      {},
+                                      {"userId": data.toString()},
+                                      {
+                                        "ownerName": snapshot
+                                            .data!.data![index].ownerName
+                                      },
+                                      {
+                                        "ownerContact": snapshot
+                                            .data!.data![index].ownerContact
+                                      },
+                                      {
+                                        "ownerEmail": snapshot
+                                            .data!.data![index].ownerEmail
+                                      },
+                                      {
+                                        "hallAddress": snapshot
+                                            .data!.data![index].hallAddress
+                                      },
+                                      {
+                                        "hallCapacity": snapshot
+                                            .data!.data![index].hallCapacity
+                                      },
+                                      {
+                                        "pricePerHead": snapshot
+                                            .data!.data![index].pricePerHead
+                                      },
+                                      {
+                                        "cateringPerHead": snapshot
+                                            .data!.data![index].cateringPerHead
+                                      },
                                     ]);
                               },
                               child: Container(

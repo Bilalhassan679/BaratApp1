@@ -84,4 +84,36 @@ class LocationServices {
       throw Exception('Error');
     }
   }
+
+  Future<void> postbookHallsByUser(
+      String userId,
+      String date,
+      String time,
+      int guestsQuantity,
+      bool eventPlaner,
+      bool cateringServices,
+      int totalPayment) async {
+    print("76 ${userId}");
+
+    var headers = {'Content-Type': 'application/json'};
+    var request = http.Request('POST', Uri.parse(AppUrl.postbookHallsByUser));
+    request.body = json.encode({
+      "userId": userId,
+      "Date": date,
+      "Time": time,
+      "GuestsQuantity": guestsQuantity,
+      "EventPlaner": eventPlaner,
+      "CateringServices": cateringServices,
+      "TotalPaynment": totalPayment
+    });
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    } else {
+      print(response.reasonPhrase);
+    }
+  }
 }

@@ -62,7 +62,6 @@ class _HomePageState extends State<HomePage> {
               child: FutureBuilder(
                   future: locationServices.fetchLocationArea(),
                   builder: (context, AsyncSnapshot<LocationModel?> snapshot) {
-                    // print(snapshot.data!.data!['sdasd']);
                     if (!snapshot.hasData) {
                       return SizedBox(
                         height: MediaQuery.of(context).size.height,
