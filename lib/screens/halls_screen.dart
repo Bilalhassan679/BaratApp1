@@ -21,6 +21,7 @@ class _HallsScreenState extends State<HallsScreen> {
   LocationServices locationServices = LocationServices();
 
   var data = Get.arguments[0]['id'];
+  var hallOwnerId = Get.arguments[0]['hallOwnerId'];
   String? areaName = Get.arguments[1]['AreaName'];
 
   @override
@@ -114,6 +115,10 @@ class _HallsScreenState extends State<HallsScreen> {
                                       {
                                         "cateringPerHead": snapshot
                                             .data!.data![index].cateringPerHead
+                                      },
+                                      {
+                                        "hallOwnerId": snapshot
+                                            .data!.data![index].hallOwnerId
                                       },
                                     ]);
                               },

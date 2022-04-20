@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-/// data : [{"_id":"6244718bd78308ca841e24b5","images":["https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker3003101623031360310.jpg?alt=media&token=e4a3b515-6323-4bd2-abd3-1ec018529b24"],"OwnerName":"Saimoon","hallName":"Mariana","OwnerContact":"95215215215","OwnerEmail":"Saimoon@gmail.com","HallAddress":"ABCD","HallCapacity":500,"PricePerHead":50,"CateringPerHead":50,"EventPlanner":true,"areaId":"62433f36c2ce9ecea55d227c","createdAt":"2022-03-30T15:04:43.522Z","updatedAt":"2022-03-30T15:04:43.522Z","__v":0}]
+/// data : [{"_id":"625d3d8e84aabf9334e560ef","images":["https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker5995819633350121822.jpg?alt=media&token=d72b5324-6afe-4833-b933-de884eb82cca","https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker4857176575623208176.jpg?alt=media&token=efc11799-0563-4c9b-b065-b48aeb2d344e"],"OwnerName":"Mishbah","hallName":"Arrange GOLD","OwnerContact":"0","OwnerEmail":"mish@gmail.com","HallAddress":"s-23 adress","HallCapacity":800,"PricePerHead":600,"CateringPerHead":450,"EventPlanner":true,"areaId":"624712e4a2c1db5113510647","hallOwnerId":"6257e4dfb73e94f448202ad5","createdAt":"2022-04-18T10:29:34.008Z","updatedAt":"2022-04-18T10:29:34.008Z","__v":0}]
 
 GetHallsByID getHallsByIDFromJson(String str) =>
     GetHallsByID.fromJson(json.decode(str));
@@ -34,20 +34,21 @@ class GetHallsByID {
   }
 }
 
-/// _id : "6244718bd78308ca841e24b5"
-/// images : ["https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker3003101623031360310.jpg?alt=media&token=e4a3b515-6323-4bd2-abd3-1ec018529b24"]
-/// OwnerName : "Saimoon"
-/// hallName : "Mariana"
-/// OwnerContact : "95215215215"
-/// OwnerEmail : "Saimoon@gmail.com"
-/// HallAddress : "ABCD"
-/// HallCapacity : 500
-/// PricePerHead : 50
-/// CateringPerHead : 50
+/// _id : "625d3d8e84aabf9334e560ef"
+/// images : ["https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker5995819633350121822.jpg?alt=media&token=d72b5324-6afe-4833-b933-de884eb82cca","https://firebasestorage.googleapis.com/v0/b/baratapp1.appspot.com/o/Area%20images%2Fscaled_image_picker4857176575623208176.jpg?alt=media&token=efc11799-0563-4c9b-b065-b48aeb2d344e"]
+/// OwnerName : "Mishbah"
+/// hallName : "Arrange GOLD"
+/// OwnerContact : "0"
+/// OwnerEmail : "mish@gmail.com"
+/// HallAddress : "s-23 adress"
+/// HallCapacity : 800
+/// PricePerHead : 600
+/// CateringPerHead : 450
 /// EventPlanner : true
-/// areaId : "62433f36c2ce9ecea55d227c"
-/// createdAt : "2022-03-30T15:04:43.522Z"
-/// updatedAt : "2022-03-30T15:04:43.522Z"
+/// areaId : "624712e4a2c1db5113510647"
+/// hallOwnerId : "6257e4dfb73e94f448202ad5"
+/// createdAt : "2022-04-18T10:29:34.008Z"
+/// updatedAt : "2022-04-18T10:29:34.008Z"
 /// __v : 0
 
 Data dataFromJson(String str) => Data.fromJson(json.decode(str));
@@ -67,6 +68,7 @@ class Data {
     int? cateringPerHead,
     bool? eventPlanner,
     String? areaId,
+    String? hallOwnerId,
     String? createdAt,
     String? updatedAt,
     int? v,
@@ -83,6 +85,7 @@ class Data {
     _cateringPerHead = cateringPerHead;
     _eventPlanner = eventPlanner;
     _areaId = areaId;
+    _hallOwnerId = hallOwnerId;
     _createdAt = createdAt;
     _updatedAt = updatedAt;
     _v = v;
@@ -101,6 +104,7 @@ class Data {
     _cateringPerHead = json['CateringPerHead'];
     _eventPlanner = json['EventPlanner'];
     _areaId = json['areaId'];
+    _hallOwnerId = json['hallOwnerId'];
     _createdAt = json['createdAt'];
     _updatedAt = json['updatedAt'];
     _v = json['__v'];
@@ -117,6 +121,7 @@ class Data {
   int? _cateringPerHead;
   bool? _eventPlanner;
   String? _areaId;
+  String? _hallOwnerId;
   String? _createdAt;
   String? _updatedAt;
   int? _v;
@@ -133,6 +138,7 @@ class Data {
   int? get cateringPerHead => _cateringPerHead;
   bool? get eventPlanner => _eventPlanner;
   String? get areaId => _areaId;
+  String? get hallOwnerId => _hallOwnerId;
   String? get createdAt => _createdAt;
   String? get updatedAt => _updatedAt;
   int? get v => _v;
@@ -151,6 +157,7 @@ class Data {
     map['CateringPerHead'] = _cateringPerHead;
     map['EventPlanner'] = _eventPlanner;
     map['areaId'] = _areaId;
+    map['hallOwnerId'] = _hallOwnerId;
     map['createdAt'] = _createdAt;
     map['updatedAt'] = _updatedAt;
     map['__v'] = _v;

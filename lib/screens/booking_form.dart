@@ -23,6 +23,7 @@ class _BookingFormState extends State<BookingForm> {
   final userID = Get.arguments[0]['userID'];
   final pricePerHead = Get.arguments[1]['pricePerHead'];
   final cateringPerHead = Get.arguments[2]['cateringPerHead'];
+  final hallOwnerId = Get.arguments[3]['hallOwnerId'];
   final TextEditingController noOfGuests = TextEditingController();
 
   LocationServices locationServices = LocationServices();
@@ -293,6 +294,7 @@ class _BookingFormState extends State<BookingForm> {
                         "selectedPrice":
                             isCartService ? cateringPerHead : pricePerHead
                       },
+                      {"hallOwnerId": hallOwnerId},
                     ]);
                   },
                   child: const ReusableTextIconButton(

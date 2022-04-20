@@ -1,5 +1,6 @@
 import 'package:barat/Models/location_model.dart';
 import 'package:barat/screens/halls_screen.dart';
+import 'package:barat/screens/loginPage.dart';
 import 'package:barat/services/locationservices.dart';
 import 'package:barat/utils/color.dart';
 import 'package:barat/widgets/reusableBigText.dart';
@@ -7,6 +8,7 @@ import 'package:barat/widgets/reusableText.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final box = GetStorage();
   LocationServices locationServices = LocationServices();
   @override
   void initState() {
@@ -50,12 +53,18 @@ class _HomePageState extends State<HomePage> {
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              ReusableBigText(
+            children: [
+              const ReusableBigText(
                 text: "Select Area",
                 fontSize: 25,
               ),
-              Icon(Icons.logout),
+              InkWell(
+                  onTap: () {
+                    print("logout");
+                    box.erase();
+                    Get.off(() => const LoginPage());
+                  },
+                  child: Icon(Icons.logout)),
             ],
           ),
           Expanded(

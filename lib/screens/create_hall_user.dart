@@ -1,34 +1,31 @@
-import 'package:barat/screens/loginPage.dart';
 import 'package:barat/services/credentialservices.dart';
 import 'package:barat/utils/color.dart';
 import 'package:barat/widgets/reusableBigText.dart';
 import 'package:barat/widgets/reusableTextField.dart';
 import 'package:barat/widgets/reusableTextIconButton.dart';
-import 'package:barat/widgets/reusablealreadytext.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key? key}) : super(key: key);
+class CreateHallUser extends StatefulWidget {
+  const CreateHallUser({Key? key}) : super(key: key);
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _CreateHallUserState createState() => _CreateHallUserState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _CreateHallUserState extends State<CreateHallUser> {
   final CredentialServices credentialServices = CredentialServices();
   final TextEditingController _username = TextEditingController();
   final TextEditingController _fullname = TextEditingController();
   final TextEditingController _phone = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
-
-  int userRoll = 1;
+  int userRoll = 2;
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+
     _username.dispose();
     _fullname.dispose();
     _phone.dispose();
@@ -38,7 +35,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("32   $userRoll");
+    print("31   $userRoll");
+
     final height = MediaQuery.of(context).size.height;
     // final width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -61,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       const Padding(
                         padding: EdgeInsets.all(12.0),
                         child: ReusableBigText(
-                          text: 'Sign Up',
+                          text: 'Create Hall User',
                         ),
                       ),
                       SizedBox(
@@ -109,7 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: height * 0.02,
                       ),
                       InkWell(
-                        onTap: () async {
+                        onTap: () {
                           credentialServices.signUpPost(
                               _username.text,
                               _fullname.text,
@@ -121,10 +119,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: const ReusableTextIconButton(
                           text: "SignUp",
                         ),
-                      ),
-                      ReusableAlreadyText(
-                        text: "Login",
-                        onClick: () => Get.off(() => const LoginPage()),
                       ),
                     ],
                   )),

@@ -6,4 +6,5 @@ class AppUrl {
   static const String createArea = baseUrl + 'area/createArea';
   static const String getHallsById = baseUrl + 'getHalls/';
   static const String postbookHallsByUser = baseUrl + 'hallOrder/bookHalls/';
+  static const String GetHallOwner = baseUrl + 'user/GetHallOwner/2';
 }

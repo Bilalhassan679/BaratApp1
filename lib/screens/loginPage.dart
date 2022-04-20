@@ -6,8 +6,7 @@ import 'package:barat/widgets/reusableTextIconButton.dart';
 import 'package:barat/widgets/reusablealreadytext.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'admin.dart';
+import 'package:get_storage/get_storage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,18 +16,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final box = GetStorage();
   final CredentialServices credentialServices = CredentialServices();
 
-  final TextEditingController _email = TextEditingController();
+  final TextEditingController _username = TextEditingController();
   final TextEditingController _password = TextEditingController();
-  final String email = "admin@gmail.com";
-  final int password = 12345;
+  // final String username = "admin@gmail.com";
+  // final int password = 12345;
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _email.dispose();
+    _username.dispose();
     _password.dispose();
   }
 
@@ -63,8 +63,8 @@ class _LoginPageState extends State<LoginPage> {
                       ),
 
                       ReusableTextField(
-                        controller: _email,
-                        hintText: 'email',
+                        controller: _username,
+                        hintText: 'username',
                         keyboardType: TextInputType.text,
                       ),
                       SizedBox(
@@ -81,14 +81,19 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       InkWell(
                         onTap: () {
-                          if (_email.text.toString() == email.toString() &&
-                              _password.text.toString() ==
-                                  password.toString()) {
-                            Get.off(() => const AdminPage());
-                          } else {
-                            credentialServices.loginPost(_email.text.toString(),
-                                _password.text.toString());
-                          }
+                          // if (_username.text.toString() ==
+                          //         username.toString() &&
+                          //     _password.text.toString() ==
+                          //         password.toString()) {
+                          //   Get.off(() => const AdminPage());
+                          // } else {
+                          //   credentialServices.loginPost(
+                          //       _username.text.toString(),
+                          //       _password.text.toString());
+                          // }
+                          credentialServices.loginPost(
+                              _username.text.toString(),
+                              _password.text.toString());
                         },
                         child: const ReusableTextIconButton(
                           text: "Login",

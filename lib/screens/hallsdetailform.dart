@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:barat/Models/hall_owner_model.dart';
 import 'package:barat/widgets/reusableBigText.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -34,6 +35,7 @@ class _HallsDetailFormState extends State<HallsDetailForm> {
   var img_url;
 
   String? AreaName;
+  String? UserName;
   List<String>? AreaListArray = ['A', 'B', 'C', 'D'];
 
   final TextEditingController ownerName = TextEditingController();
@@ -131,6 +133,56 @@ class _HallsDetailFormState extends State<HallsDetailForm> {
                                   onChanged: (_) {
                                     setState(() {
                                       AreaName = _!;
+                                    });
+                                    print('drop down id  ${_}');
+                                  },
+                                ),
+                              ),
+                            );
+                          }
+
+                          return Center(child: CircularProgressIndicator());
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.01,
+                      ),
+                      FutureBuilder(
+                        future: locationServices.getHallOwner(),
+                        builder:
+                            (context, AsyncSnapshot<HallOwnerModel?> snapshot) {
+                          if (snapshot.connectionState ==
+                                  ConnectionState.done &&
+                              snapshot.hasData &&
+                              snapshot.data != null) {
+                            return SizedBox(
+                              width: 400.w,
+                              child: Center(
+                                child: DropdownButton<String?>(
+                                  elevation: 20,
+                                  value: UserName,
+                                  hint: Text(
+                                    "Please Select the User Name ",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  ),
+                                  items: snapshot.data!.data!.map((value) {
+                                    return DropdownMenuItem(
+                                      value: value.id,
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 50.0),
+                                        child: Text(
+                                          "${value.userName}",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                  onChanged: (_) {
+                                    setState(() {
+                                      UserName = _!;
                                     });
                                     print('drop down id  ${_}');
                                   },
@@ -275,6 +327,7 @@ class _HallsDetailFormState extends State<HallsDetailForm> {
                             locationServices.postHallsByAdmin(
                               arrimgsUrl,
                               AreaName.toString(),
+                              UserName.toString(),
                               ownerName.text.toString(),
                               hallName.text.toString(),
                               int.parse(ownerContact.text),

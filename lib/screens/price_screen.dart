@@ -42,6 +42,7 @@ class _PriceScreenState extends State<PriceScreen> {
   final isCartService = Get.arguments[5]['isCartService'];
 
   final selectedPrice = Get.arguments[6]['selectedPrice'];
+  final hallOwnerId = Get.arguments[7]['hallOwnerId'];
 
   LocationServices locationServices = LocationServices();
 
@@ -153,8 +154,15 @@ class _PriceScreenState extends State<PriceScreen> {
       });
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Paid Succesfully')));
-      await locationServices.postbookHallsByUser(userID, date!, time!,
-          noOfGuests, isEventPlanner, isCartService, finalTotalPrice);
+      await locationServices.postbookHallsByUser(
+          userID,
+          date!,
+          time!,
+          noOfGuests,
+          isEventPlanner,
+          isCartService,
+          finalTotalPrice,
+          hallOwnerId);
       Get.off(() => const ConfirmOrderScreen());
     } on StripeException catch (e) {
       print('Exception/DISPLAYPAYMENTSHEET==> $e');

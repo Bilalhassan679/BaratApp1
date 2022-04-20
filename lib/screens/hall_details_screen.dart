@@ -32,6 +32,7 @@ class _HallDetailScreenState extends State<HallDetailScreen> {
   final hallCapacity = Get.arguments[6]['hallCapacity'];
   final pricePerHead = Get.arguments[7]['pricePerHead'];
   final cateringPerHead = Get.arguments[8]['cateringPerHead'];
+  final hallOwnerId = Get.arguments[9]['hallOwnerId'];
 
   @override
   void initState() {
@@ -46,19 +47,19 @@ class _HallDetailScreenState extends State<HallDetailScreen> {
         body: SafeArea(
             child: Column(children: [
       Container(
+        height: 230,
         color: Colors.black,
         child: CarouselSlider.builder(
           itemCount: images.length,
           itemBuilder:
               (BuildContext context, int itemIndex, int pageViewIndex) =>
                   Container(
-            width: 800,
+            width: 900,
             // margin: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
-                color: Colors.black54,
                 image: DecorationImage(
                     image: NetworkImage("${images[itemIndex]}"),
-                    fit: BoxFit.fitWidth)),
+                    fit: BoxFit.contain)),
             child: Padding(
               padding: EdgeInsets.only(bottom: 25.0.h),
               child: Row(
@@ -84,10 +85,10 @@ class _HallDetailScreenState extends State<HallDetailScreen> {
             ),
           ),
           options: CarouselOptions(
-            autoPlay: false,
+            autoPlay: true,
             enableInfiniteScroll: false,
-            enlargeCenterPage: true,
-            // viewportFraction: 0.9,
+            // enlargeCenterPage: true,
+            viewportFraction: 1.1,
             // aspectRatio: 2.0,
             initialPage: 0,
           ),
@@ -155,6 +156,7 @@ class _HallDetailScreenState extends State<HallDetailScreen> {
                       {"userID": userID},
                       {"pricePerHead": pricePerHead},
                       {"cateringPerHead": cateringPerHead},
+                      {"hallOwnerId": hallOwnerId},
                     ]);
                   },
                   child: Text(
